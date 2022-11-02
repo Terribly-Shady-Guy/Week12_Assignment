@@ -19,4 +19,7 @@ db.on("error", () => console.error.bind(console, "db connection error"));
 db.once("open", () => console.log("connected to database successfully"));
 
 //put code to get db schema here
+require("./Models/student.js");
+const student = mongoose.model("Students");
+
 app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
