@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 1200;
+app.use(express.json());
 
 const nodemon = require("nodemon");
 
