@@ -27,3 +27,58 @@ require("./Models/courses.js");
 const course = mongoose.model("Course");
 
 app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
+
+app.get(`/getAllCourses`, (req, res) => {
+    try{
+        return res.status(200).json("Test getAllCourses");
+    }
+    catch{
+        return res.status(500);
+    }
+});
+
+app.get(`/getAllStudents`, (req, res) => {
+    try{
+        return res.status(200).json("Test getAllStudents");
+    }
+    catch{
+        return res.status(500);
+    }
+});
+
+app.get(`/findStudent`, (req, res) => {
+    try{
+        return res.status(200).json("test findStudent");
+    }
+    catch{
+        return res.status(500);
+    }
+});
+
+app.get(`/findCourse`, (req, res) => {
+    try{
+        return res.status(200).json("Test findCourse");
+    }
+    catch{
+        return res.status(500);
+    }
+});
+
+app.post(`/addCourse`, (req, res) => {
+    try{
+        return res.status(200).json("Test addCourse");
+    }
+    catch{
+        return res.status(500);
+    }
+});
+
+app.post(`/addStudent`, (req, res) => {
+    try{
+        return res.status(200).json("Test addStudent");
+    }
+    catch{
+        return res.status(500);
+    }
+});
+
