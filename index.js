@@ -22,4 +22,7 @@ db.once("open", () => console.log("connected to database successfully"));
 require("./Models/student.js");
 const student = mongoose.model("Students");
 
+require("./Models/courses.js");
+const course = mongoose.model("Course");
+
 app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
