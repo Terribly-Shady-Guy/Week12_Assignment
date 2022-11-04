@@ -18,6 +18,10 @@ const Course = new schema({
     courseName: {
         type: String,
         require: true
+    },
+    dateEntered: {
+        type: Date,
+        default: Date.now
     }
 })
 

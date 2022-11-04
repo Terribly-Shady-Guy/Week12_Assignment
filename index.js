@@ -20,53 +20,80 @@ db.once("open", () => console.log("connected to database successfully"));
 
 
 //put code to get db schema here
-require("./Models/student.js");
-const student = mongoose.model("Students");
+require("./Models/students.js");
+const Student = mongoose.model("Student");
 
 require("./Models/courses.js");
-const course = mongoose.model("Course");
+const Course = mongoose.model("Course");
 
 app.listen(PORT, () => console.log(`server started on http://localhost:${PORT}`));
 
-app.get(`/getAllCourses`, (req, res) => {
+app.get(`/getAllCourses`, async (req, res) => {
     try{
-        return res.status(200).json("Test getAllCourses");
+        let courses = await Course.find({}).lean()
+        return res.status(200).json(courses);
     }
     catch{
         return res.status(500);
     }
 });
 
-app.get(`/getAllStudents`, (req, res) => {
+app.get(`/getAllStudents`, async (req, res) => {
     try{
-        return res.status(200).json("Test getAllStudents");
+        let students = await Student.find({}).lean()
+        return res.status(200).json(students);
     }
     catch{
         return res.status(500);
     }
 });
 
-app.get(`/findStudent`, (req, res) => {
+app.get(`/findStudent`, async (req, res) => {
     try{
-        return res.status(200).json("test findStudent");
+        let student = await Student.findOne({fname: req.body.fname})
+
+        if (student) {
+            return res.status(200).json(student);
+            
+        } 
+        else {
+            return res.status(200).json("Student not Found...")            
+        }
     }
     catch{
-        return res.status(500);
+        return res.status(500).json("Connection ERROR...")
     }
 });
 
-app.get(`/findCourse`, (req, res) => {
+app.get(`/findCourse`, async (req, res) => {
     try{
-        return res.status(200).json("Test findCourse");
+        let course = await Course.findOne({courseID: req.body.courseID})
+
+        if (course) {
+            return res.status(200).json(course);
+            
+        } 
+        else {
+            return res.status(200).json("Course not Found...")            
+        }
     }
     catch{
-        return res.status(500);
+        return res.status(500).json("Connection ERROR...")
     }
 });
 
 app.post(`/addCourse`, (req, res) => {
     try{
-        return res.status(200).json("Test addCourse");
+        let course = {
+            courseInstructor: req.body.courseInstructor,
+            courseCredits: req.body.courseCredits,
+            courseID: req.body.courseID,
+            courseName: req.body.courseName
+        }
+
+        Course(course).save().then(() => {
+            return res.status(200).json("Course Added...")
+        })
     }
     catch{
         return res.status(500);
@@ -75,7 +102,15 @@ app.post(`/addCourse`, (req, res) => {
 
 app.post(`/addStudent`, (req, res) => {
     try{
-        return res.status(200).json("Test addStudent");
+        let student = {
+            fname: req.body.fname,
+            lname: req.body.lname,
+            studentID: req.body.studentID
+        }
+
+        Student(student).save().then(() => {
+            return res.status(200).json("Student Added...")
+        })
     }
     catch{
         return res.status(500);
