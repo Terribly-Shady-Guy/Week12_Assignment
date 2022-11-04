@@ -50,7 +50,7 @@ app.get(`/getAllStudents`, async (req, res) => {
 
 app.get(`/findStudent`, async (req, res) => {
     try{
-        let student = await Student.findOne({fname: req.body.fname})
+        let student = await Student.findOne({studentID: req.body.studentID})
 
         if (student) {
             return res.status(200).json(student);
