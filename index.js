@@ -120,7 +120,9 @@ app.post(`/addStudent`, (req, res) => {
 
 app.put("/editStudentById", async (req, res) => {
     try {
-        let student = await Student.updateOne({_id: req.body.id}, {fname: req.body.fname});
+        let student = await Student.updateOne({_id: req.body.id}, {
+            fname: req.body.fname
+        });
 
         if (student) {
             res.status(200).send("Student first name updated");
@@ -130,6 +132,25 @@ app.put("/editStudentById", async (req, res) => {
         }
     }
     catch {
-        res.status(500).json("{Message: db error}");
+        res.status(500).send("db error");
     }
-})
+});
+
+app.put("/editStudentByFname", async (req, res) => {
+    try {
+        let student = await Student.updateOne({fname: req.body.fname}, {
+            fname: req.body.fnameNew, 
+            lname: req.body.lname
+        });
+        
+        if (student) {
+            res.status(200).send("student name updated");
+        }
+        else {
+            res.status(200).send("student name was not updated");
+        }
+    }
+    catch {
+        res.status(500).send("db error");
+    }
+});
