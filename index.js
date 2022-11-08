@@ -118,3 +118,18 @@ app.post(`/addStudent`, (req, res) => {
     }
 });
 
+app.put("/editStudentById", async (req, res) => {
+    try {
+        let student = await Student.updateOne({_id: req.body.id}, {fname: req.body.fname});
+
+        if (student) {
+            res.status(200).send("Student first name updated");
+        }
+        else {
+            res.status(200).send("No change on student data");
+        }
+    }
+    catch {
+        res.status(500).json("{Message: db error}");
+    }
+})
