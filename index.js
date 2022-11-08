@@ -173,7 +173,7 @@ app.put("/editCourseByCourseName", async (req, res) => {
 
 app.delete("/deleteCourseById", async (req, res) => {
     try {
-        let course = Course.findOne({_id: req.body.id});
+        let course = await Course.findOne({_id: req.body.id});
 
         if (course) {
             await Course.deleteOne({_id: req.body.id});
