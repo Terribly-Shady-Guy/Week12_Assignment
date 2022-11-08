@@ -154,3 +154,21 @@ app.put("/editStudentByFname", async (req, res) => {
         res.status(500).send("db error");
     }
 });
+
+app.put("/editCourseByCourseName", async (req, res) => {
+    try {
+        let course = await Course.updateOne({courseName: req.body.courseName}, {
+            courseInstructor: req.body.courseInstructor
+        });
+
+        if (course) {
+            res.status(200).send("course instructor updated");
+        }
+        else {
+            res.status(200).send("course instructor not updated");
+        }
+    }
+    catch {
+        res.status(500).send("db error");
+    }
+});
