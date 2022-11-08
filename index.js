@@ -125,14 +125,14 @@ app.put("/editStudentById", async (req, res) => {
         });
 
         if (student) {
-            res.status(200).send("Student first name updated");
+            return res.status(200).send("Student first name updated");
         }
         else {
-            res.status(200).send("No change on student data");
+            return res.status(200).send("No change on student data");
         }
     }
     catch {
-        res.status(500).send("db error");
+        return res.status(500).send("db error");
     }
 });
 
@@ -144,14 +144,14 @@ app.put("/editStudentByFname", async (req, res) => {
         });
         
         if (student) {
-            res.status(200).send("student name updated");
+            return res.status(200).send("student name updated");
         }
         else {
-            res.status(200).send("student name was not updated");
+            return res.status(200).send("student name was not updated");
         }
     }
     catch {
-        res.status(500).send("db error");
+        return res.status(500).send("db error");
     }
 });
 
@@ -162,14 +162,14 @@ app.put("/editCourseByCourseName", async (req, res) => {
         });
 
         if (course) {
-            res.status(200).send("course instructor updated");
+            return res.status(200).send("course instructor updated");
         }
         else {
-            res.status(200).send("course instructor not updated");
+            return res.status(200).send("course instructor not updated");
         }
     }
     catch {
-        res.status(500).send("db error");
+        return res.status(500).send("db error");
     }
 });
 
@@ -179,13 +179,13 @@ app.delete("/deleteCourseById", async (req, res) => {
 
         if (course) {
             await Course.deleteOne({_id: req.body.id});
-            res.status(200).send("course deleted");
+            return res.status(200).send("course deleted");
         }
         else {
-            res.status(200).send("course does not exist");
+            return res.status(200).send("course does not exist");
         }
     }
     catch {
-        res.status(500).send("db error");
+        return res.status(500).send("db error");
     }
 });
