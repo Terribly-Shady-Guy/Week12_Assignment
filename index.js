@@ -83,7 +83,7 @@ app.get(`/findCourse`, async (req, res) => {
     }
 });
 
-app.post(`/addCourse`, (req, res) => {
+app.post(`/addCourse`, async (req, res) => {
     try{
         let course = {
             courseInstructor: req.body.courseInstructor,
@@ -92,16 +92,15 @@ app.post(`/addCourse`, (req, res) => {
             courseName: req.body.courseName
         }
 
-        Course(course).save().then(() => {
-            return res.status(200).json("Course Added...")
-        })
+        await Course(course).save();
+        return res.status(200).json("Course Added...");
     }
     catch{
         return res.status(500);
     }
 });
 
-app.post(`/addStudent`, (req, res) => {
+app.post(`/addStudent`, async (req, res) => {
     try{
         let student = {
             fname: req.body.fname,
@@ -109,9 +108,8 @@ app.post(`/addStudent`, (req, res) => {
             studentID: req.body.studentID
         }
 
-        Student(student).save().then(() => {
-            return res.status(200).json("Student Added...")
-        })
+        await Student(student).save();
+        return res.status(200).json("Student Added...");
     }
     catch{
         return res.status(500);
