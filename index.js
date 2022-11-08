@@ -172,3 +172,20 @@ app.put("/editCourseByCourseName", async (req, res) => {
         res.status(500).send("db error");
     }
 });
+
+app.delete("/deleteCourseById", async (req, res) => {
+    try {
+        let course = Course.findOne({_id: req.body.id});
+
+        if (course) {
+            await Course.deleteOne({_id: req.body.id});
+            res.status(200).send("course deleted");
+        }
+        else {
+            res.status(200).send("course does not exist");
+        }
+    }
+    catch {
+        res.status(500).send("db error");
+    }
+});
