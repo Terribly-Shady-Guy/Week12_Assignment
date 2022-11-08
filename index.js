@@ -187,3 +187,20 @@ app.delete("/deleteCourseById", async (req, res) => {
         return res.status(500).send("db error");
     }
 });
+
+app.delete("/removeStudentFromClasses", async (req, res) => {
+    try {
+        let student = await Student.findOne({studentID: req.body.studentID});
+
+        if (student) {
+            await Student.deleteOne({studentID: req.body.studentID});
+            return res.status(200).send("student deleted");
+        }
+        else {
+            return res.status(200).send("student id does not exist");
+        }
+    }
+    catch {
+        return res.status(500).send("db error");
+    }
+});
