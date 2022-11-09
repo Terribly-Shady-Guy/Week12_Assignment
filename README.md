@@ -1,7 +1,7 @@
 # Week12_Assignment
 routes:
 
-/getAllCourses Verb: GET Argument: none
+/getAllCourses Verb: GET Argument: none \n
 /getAllStudents Verb: GET Argument: none
 /findStudent Verb: GET Argument: studentID
 /findCourse Verb: GET Argument: courseInstructor
