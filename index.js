@@ -130,7 +130,7 @@ app.put("/editStudentById", async (req, res) => {
         }
     }
     catch {
-        return res.status(500).send("db error");
+        return res.status(500).send("failed to edit student");
     }
 });
 
@@ -149,7 +149,7 @@ app.put("/editStudentByFname", async (req, res) => {
         }
     }
     catch {
-        return res.status(500).send("db error");
+        return res.status(500).send("failed to edit student");
     }
 });
 
@@ -167,7 +167,7 @@ app.put("/editCourseByCourseName", async (req, res) => {
         }
     }
     catch {
-        return res.status(500).send("db error");
+        return res.status(500).send("failed to edit course");
     }
 });
 
@@ -184,7 +184,7 @@ app.delete("/deleteCourseById", async (req, res) => {
         }
     }
     catch {
-        return res.status(500).send("db error");
+        return res.status(500).send("fained to delete course");
     }
 });
 
@@ -201,6 +201,6 @@ app.delete("/removeStudentFromClasses", async (req, res) => {
         }
     }
     catch {
-        return res.status(500).send("db error");
+        return res.status(500).send("failed to remove student");
     }
 });
