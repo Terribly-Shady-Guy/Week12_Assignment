@@ -116,7 +116,7 @@ app.post(`/addStudent`, async (req, res) => {
     }
 });
 
-app.put("/editStudentById", async (req, res) => {
+app.post("/editStudentById", async (req, res) => {
     try {
         let student = await Student.updateOne({_id: req.body.id}, {
             fname: req.body.fname
@@ -134,7 +134,7 @@ app.put("/editStudentById", async (req, res) => {
     }
 });
 
-app.put("/editStudentByFname", async (req, res) => {
+app.post("/editStudentByFname", async (req, res) => {
     try {
         let student = await Student.updateOne({fname: req.body.fname}, {
             fname: req.body.fnameNew, 
@@ -153,7 +153,7 @@ app.put("/editStudentByFname", async (req, res) => {
     }
 });
 
-app.put("/editCourseByCourseName", async (req, res) => {
+app.post("/editCourseByCourseName", async (req, res) => {
     try {
         let course = await Course.updateOne({courseName: req.body.courseName}, {
             courseInstructor: req.body.courseInstructor
@@ -171,7 +171,7 @@ app.put("/editCourseByCourseName", async (req, res) => {
     }
 });
 
-app.delete("/deleteCourseById", async (req, res) => {
+app.post("/deleteCourseById", async (req, res) => {
     try {
         let course = await Course.findOne({_id: req.body.id});
 
@@ -188,7 +188,7 @@ app.delete("/deleteCourseById", async (req, res) => {
     }
 });
 
-app.delete("/removeStudentFromClasses", async (req, res) => {
+app.post("/removeStudentFromClasses", async (req, res) => {
     try {
         let student = await Student.findOne({studentID: req.body.studentID});
 
