@@ -184,7 +184,7 @@ app.delete("/deleteCourseById", async (req, res) => {
         }
     }
     catch {
-        return res.status(500).send("fained to delete course");
+        return res.status(500).send("failed to delete course");
     }
 });
 
