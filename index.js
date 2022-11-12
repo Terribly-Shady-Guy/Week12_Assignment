@@ -136,8 +136,8 @@ app.post("/editStudentById", async (req, res) => {
 
 app.post("/editStudentByFname", async (req, res) => {
     try {
-        let student = await Student.updateOne({fname: req.body.fname}, {
-            fname: req.body.fnameNew, 
+        let student = await Student.updateOne({fname: req.body.queryFname}, {
+            fname: req.body.fname, 
             lname: req.body.lname
         });
         
